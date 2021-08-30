@@ -155,7 +155,7 @@ Por defecto el viene con `npm test` y lo vamos a sustituir por `npx lint-staged`
 ```json
 "lint-staged": {
     "src/**/*.{js,jsx}": [
-        "eslint",
+        "eslint --cache --fix",
         "pretty-quick --staged",
         "git add"
     ]
@@ -179,7 +179,7 @@ EJEMPLO DEL FLUJO (`pre-commit`):
 2-EJECUTAMOS -> git commit -m "example"
  (Luego del Enter)
 
-3-SE EJECUTA -> eslint - (Ejecuta eslint en los archivos que están en el staging area)
+3-SE EJECUTA -> eslint --cache --fix -> (Ejecuta eslint en los archivos que están en el staging area)
 
 4-SE EJECUTA -> pretty-quick --staged -> (Formatea los archivos del commit evitando que por casualidad nos alvidamos de formatear algo.)
 
