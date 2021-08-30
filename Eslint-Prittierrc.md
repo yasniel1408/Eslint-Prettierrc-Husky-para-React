@@ -155,8 +155,8 @@ Por defecto el viene con `npm test` y lo vamos a sustituir por `npx lint-staged`
 ```json
 "lint-staged": {
     "src/**/*.{js,jsx}": [
-        "eslint --fix",
-        "pretty-quick — staged",
+        "eslint",
+        "pretty-quick --staged",
         "git add"
     ]
 }
@@ -174,23 +174,30 @@ Este hook nos ayudará a correr los test antes de que hagamos un push al server.
 EJEMPLO DEL FLUJO (`pre-commit`):
 
 ```json
-1-EJECUTAMOS - git add .
-2-EJECUTAMOS - git commit -m "example"
+1-EJECUTAMOS -> git add .
+
+2-EJECUTAMOS -> git commit -m "example"
  (Luego del Enter)
-3-SE EJECUTA - eslint
-4-SE EJECUTA - pretty-quick — staged
-5-SE EJECUTA - git add
+
+3-SE EJECUTA -> eslint - (Ejecuta eslint en los archivos que están en el staging area)
+
+4-SE EJECUTA -> pretty-quick --staged -> (Formatea los archivos del commit evitando que por casualidad nos alvidamos de formatear algo.)
+
+5-SE EJECUTA -> git add -> (Add lo que fue corregido al staging area)
+
  (Si no hay errores)
-6-SE EJECUTA - git commit -m "example"
+6-SE EJECUTA -> git commit -m "example"
 ```
 
 EJEMPLO DEL FLUJO (`pre-push`):
 
 ```json
-1-EJECUTAMOS - git push
-2-SE EJECUTA - npx jest
+1-EJECUTAMOS -> git push
+
+2-SE EJECUTA -> npx jest -> (Corre los unit test para evitar que exista código roto que se envie a git)
+
 (Si no hay errores)
-3-SE EJECUTA - git push
+3-SE EJECUTA -> git push
 ```
 
 ## <p style="color:blue;">5- Creamos scripts(_OPCIONAL_)</p>
